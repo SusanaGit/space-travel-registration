@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,6 +18,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.susanafigueroa.spacetravelregistration.ui.theme.SpaceTravelRegistrationTheme
 
@@ -41,11 +44,12 @@ private fun SpaceTravelRegistration() {
             CenterAlignedTopAppBar(
                 title = {
                     Text(
-                        text = "Space Travel Registration"
+                        text = "Space Travel Registration",
+                        color = Color.LightGray
                     )
                 },
                 colors = TopAppBarDefaults.largeTopAppBarColors(
-                    containerColor = Color(0xFFA4F5FF)
+                    containerColor = Color(0x4BA4F5FF)
                 )
             )
         }
@@ -54,6 +58,9 @@ private fun SpaceTravelRegistration() {
             modifier = Modifier
                 .fillMaxSize()
         ) {
+
+            BackgroundImage()
+
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
@@ -63,6 +70,19 @@ private fun SpaceTravelRegistration() {
         }
     }
 
+}
+
+@Composable
+private fun BackgroundImage() {
+    val imageBackground = painterResource(R.drawable.galaxy_night_landscape)
+
+    Image(
+        painter = imageBackground,
+        contentDescription = "image background",
+        modifier = Modifier
+            .fillMaxSize(),
+        contentScale = ContentScale.Crop
+    )
 }
 
 @Preview(showBackground = true)
