@@ -5,10 +5,14 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -157,12 +161,7 @@ private fun SpaceTravelRegistration() {
                             modifier = Modifier.height(16.dp)
                         )
 
-                        EditValue(
-                            valueInput = nameInput,
-                            onValueChange = {
-                                    newNameInput -> nameInput = newNameInput
-                            }
-                        )
+                        ShowDestinations()
 
                         Spacer(
                             modifier = Modifier.height(16.dp)
@@ -185,12 +184,7 @@ private fun SpaceTravelRegistration() {
                             modifier = Modifier.height(16.dp)
                         )
 
-                        EditValue(
-                            valueInput = nameInput,
-                            onValueChange = {
-                                    newNameInput -> nameInput = newNameInput
-                            }
-                        )
+                        // ShowSummary()
 
                         Spacer(
                             modifier = Modifier.height(16.dp)
@@ -203,6 +197,162 @@ private fun SpaceTravelRegistration() {
                 }
             }
 
+        }
+    }
+}
+
+@Composable
+private fun ShowDestinations() {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
+        Row(
+            modifier = Modifier
+                .padding(vertical = 25.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Column(
+            ) {
+                val imageMoon = painterResource(R.drawable.moon)
+                Image(
+                    painter = imageMoon,
+                    contentDescription = stringResource(R.string.image_moon),
+                    modifier = Modifier
+                        .padding(horizontal = 40.dp)
+                        .height(50.dp)
+                        .width(50.dp)
+                )
+            }
+
+            Column(
+
+            ) {
+                val imageMercury = painterResource(R.drawable.mercury)
+                Image(
+                    painter = imageMercury,
+                    contentDescription = stringResource(R.string.image_mercury),
+                    modifier = Modifier
+                        .padding(horizontal = 40.dp)
+                        .height(50.dp)
+                        .width(50.dp)
+                )
+            }
+        }
+        Row(
+            modifier = Modifier
+                .padding(vertical = 25.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Column() {
+                val imageVenus = painterResource(R.drawable.venus)
+                Image(
+                    painter = imageVenus,
+                    contentDescription = stringResource(R.string.image_venus),
+                    modifier = Modifier
+                        .padding(horizontal = 40.dp)
+                        .height(50.dp)
+                        .width(50.dp)
+                )
+            }
+
+            Column() {
+                val imageEarth = painterResource(R.drawable.earth)
+                Image(
+                    painter = imageEarth,
+                    contentDescription = stringResource(R.string.image_earth),
+                    modifier = Modifier
+                        .padding(horizontal = 40.dp)
+                        .height(50.dp)
+                        .width(50.dp)
+                )
+            }
+        }
+        Row(
+            modifier = Modifier
+                .padding(vertical = 25.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Column() {
+                val imageMars = painterResource(R.drawable.mars)
+                Image(
+                    painter = imageMars,
+                    contentDescription = stringResource(R.string.image_mars),
+                    modifier = Modifier
+                        .padding(horizontal = 40.dp)
+                        .height(50.dp)
+                        .width(50.dp)
+                )
+            }
+
+            Column() {
+                val imageJupiter = painterResource(R.drawable.jupiter)
+                Image(
+                    painter = imageJupiter,
+                    contentDescription = stringResource(R.string.image_jupiter),
+                    modifier = Modifier
+                        .padding(horizontal = 40.dp)
+                        .height(50.dp)
+                        .width(50.dp)
+                )
+            }
+        }
+        Row(
+            modifier = Modifier
+                .padding(vertical = 25.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Column() {
+                val imageSaturn = painterResource(R.drawable.saturn)
+                Image(
+                    painter = imageSaturn,
+                    contentDescription = stringResource(R.string.image_saturn),
+                    modifier = Modifier
+                        .padding(horizontal = 40.dp)
+                        .height(50.dp)
+                        .width(50.dp)
+                )
+            }
+
+            Column() {
+                val imageUranus = painterResource(R.drawable.uranus)
+                Image(
+                    painter = imageUranus,
+                    contentDescription = stringResource(R.string.image_uranus),
+                    modifier = Modifier
+                        .padding(horizontal = 40.dp)
+                        .height(50.dp)
+                        .width(50.dp)
+                )
+            }
+        }
+        Row(
+            modifier = Modifier
+                .padding(vertical = 25.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Column() {
+                val imageNeptune = painterResource(R.drawable.neptune)
+                Image(
+                    painter = imageNeptune,
+                    contentDescription = stringResource(R.string.image_neptune),
+                    modifier = Modifier
+                        .padding(horizontal = 40.dp)
+                        .height(50.dp)
+                        .width(50.dp)
+                )
+            }
+
+            Column() {
+                val imagePluto = painterResource(R.drawable.pluto)
+                Image(
+                    painter = imagePluto,
+                    contentDescription = stringResource(R.string.image_pluto),
+                    modifier = Modifier
+                        .padding(horizontal = 40.dp)
+                        .height(50.dp)
+                        .width(50.dp)
+                )
+            }
         }
     }
 }
@@ -224,7 +374,7 @@ private fun BackgroundImage() {
 
     Image(
         painter = imageBackground,
-        contentDescription = "image background",
+        contentDescription = stringResource(R.string.image_background),
         modifier = Modifier
             .fillMaxSize(),
         contentScale = ContentScale.Crop
