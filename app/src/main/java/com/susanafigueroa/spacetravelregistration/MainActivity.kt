@@ -45,6 +45,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun SpaceTravelRegistration() {
 
+    var currentStep by remember { mutableStateOf(R.string.name_step1) }
+
     var nameInput by remember { mutableStateOf("") }
     var ageInput by remember { mutableStateOf(-1) }
     var destinationInput by remember { mutableStateOf(-1) }
@@ -77,13 +79,30 @@ private fun SpaceTravelRegistration() {
                 verticalArrangement = Arrangement.Center
             ) {
 
+                when (currentStep) {
 
+                    R.string.name_step1 -> {
+
+                    }
+
+                    R.string.age_step2 -> {
+
+                    }
+
+                    R.string.destination_step3 -> {
+
+                    }
+
+                    R.string.summary_step4 -> {
+
+                    }
+
+                }
 
 
             }
         }
     }
-
 }
 
 @Composable

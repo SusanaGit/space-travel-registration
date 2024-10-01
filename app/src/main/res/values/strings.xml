@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">Space Travel Registration</string>
     <string name="space_travel_registration">Space Travel Registration</string>
+
+    <string name="name_step1">Name Registration</string>
+    <string name="age_step2">Age Registration</string>
+    <string name="destination_step3">Destination Registration</string>
+    <string name="summary_step4">Your Registration</string>
+
+    <string name="name_text">Enter your name</string>
+    <string name="age_text">Enter your age</string>
+    <string name="destination_text">Select your destination</string>
+    <string name="empty_glass_text">Summary of your space travel</string>
 </resources>
