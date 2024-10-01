@@ -10,5 +10,5 @@
     <string name="name_text">Enter your name</string>
     <string name="age_text">Enter your age</string>
     <string name="destination_text">Select your destination</string>
-    <string name="empty_glass_text">Summary of your space travel</string>
+    <string name="summary_space_travel">Summary of your space travel</string>
 </resources>

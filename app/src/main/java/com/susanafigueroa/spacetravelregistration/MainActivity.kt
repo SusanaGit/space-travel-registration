@@ -5,15 +5,18 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -27,7 +30,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.susanafigueroa.spacetravelregistration.ui.theme.SpaceTravelRegistrationTheme
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,40 +74,95 @@ private fun SpaceTravelRegistration() {
         Surface (
             modifier = Modifier
                 .fillMaxSize()
-                .wrapContentSize(Alignment.Center)
         ) {
 
             BackgroundImage()
 
             Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                modifier = Modifier
+                    .fillMaxSize()
+                    .wrapContentSize(Alignment.Center),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
                 when (currentStep) {
 
                     R.string.name_step1 -> {
 
+                        Text (
+                            text = stringResource(R.string.name_text),
+                            color = Color.White,
+                            style = MaterialTheme.typography.titleLarge
+                        )
+
+                        Spacer(
+                            modifier = Modifier.height(16.dp)
+                        )
+
+                        EditValue(
+                            valueInput = nameInput,
+                            onValueChange = {
+                                newNameInput -> nameInput = newNameInput
+                            }
+                        )
                     }
 
                     R.string.age_step2 -> {
+
+                        Text (
+                            text = stringResource(R.string.age_text),
+                            color = Color.White,
+                            style = MaterialTheme.typography.titleLarge
+                        )
+
+                        Spacer(
+                            modifier = Modifier.height(16.dp)
+                        )
 
                     }
 
                     R.string.destination_step3 -> {
 
+                        Text (
+                            text = stringResource(R.string.destination_text),
+                            color = Color.White,
+                            style = MaterialTheme.typography.titleLarge
+                        )
+
+                        Spacer(
+                            modifier = Modifier.height(16.dp)
+                        )
+
                     }
 
                     R.string.summary_step4 -> {
 
+                        Text (
+                            text = stringResource(R.string.summary_space_travel),
+                            color = Color.White,
+                            style = MaterialTheme.typography.titleLarge
+                        )
+
+                        Spacer(
+                            modifier = Modifier.height(16.dp)
+                        )
                     }
-
                 }
-
-
             }
+
         }
     }
+}
+
+@Composable
+private fun EditValue(
+    valueInput: String,
+    onValueChange: (String) -> Unit
+){
+    TextField(
+        value = valueInput,
+        onValueChange = onValueChange
+    )
 }
 
 @Composable
