@@ -14,15 +14,15 @@
     <string name="destination_text">Select your destination</string>
     <string name="summary_space_travel">Summary of your space travel</string>
 
-    <string name="image_moon">image Moon</string>
-    <string name="image_mercury">Image Mercury</string>
-    <string name="image_venus">Image Venus</string>
-    <string name="image_earth">Image Earth</string>
-    <string name="image_mars">Image Mars</string>
-    <string name="image_jupiter">Image Jupiter</string>
-    <string name="image_saturn">Image Saturn</string>
-    <string name="image_uranus">Image Uranus</string>
-    <string name="image_neptune">Image Neptune</string>
-    <string name="image_pluto">Image Pluto</string>
+    <string name="image_moon">Moon</string>
+    <string name="image_mercury">Mercury</string>
+    <string name="image_venus">Venus</string>
+    <string name="image_earth">Earth</string>
+    <string name="image_mars">Mars</string>
+    <string name="image_jupiter">Jupiter</string>
+    <string name="image_saturn">Saturn</string>
+    <string name="image_uranus">Uranus</string>
+    <string name="image_neptune">Neptune</string>
+    <string name="image_pluto">Pluto</string>
 
 </resources>

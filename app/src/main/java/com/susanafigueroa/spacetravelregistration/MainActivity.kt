@@ -34,6 +34,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.susanafigueroa.spacetravelregistration.ui.theme.SpaceTravelRegistrationTheme
@@ -204,15 +206,19 @@ private fun SpaceTravelRegistration() {
 @Composable
 private fun ShowDestinations() {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally
     ){
         Row(
             modifier = Modifier
-                .padding(vertical = 25.dp),
+                .padding(vertical = 10.dp),
             horizontalArrangement = Arrangement.Center
         ) {
-            Column(
-            ) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally)
+            {
+                Text(
+                    text = stringResource(R.string.image_moon),
+                    color = Color(0xFFFFFAA7)
+                )
+
                 val imageMoon = painterResource(R.drawable.moon)
                 Image(
                     painter = imageMoon,
@@ -224,9 +230,12 @@ private fun ShowDestinations() {
                 )
             }
 
-            Column(
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    text = stringResource(R.string.image_mercury),
+                    color = Color(0xFFFFFAA7)
+                )
 
-            ) {
                 val imageMercury = painterResource(R.drawable.mercury)
                 Image(
                     painter = imageMercury,
@@ -240,10 +249,15 @@ private fun ShowDestinations() {
         }
         Row(
             modifier = Modifier
-                .padding(vertical = 25.dp),
+                .padding(vertical = 10.dp),
             horizontalArrangement = Arrangement.Center
         ) {
-            Column() {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    text = stringResource(R.string.image_venus),
+                    color = Color(0xFFFFFAA7)
+                )
+
                 val imageVenus = painterResource(R.drawable.venus)
                 Image(
                     painter = imageVenus,
@@ -255,7 +269,12 @@ private fun ShowDestinations() {
                 )
             }
 
-            Column() {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    text = stringResource(R.string.image_earth),
+                    color = Color(0xFFFFFAA7)
+                )
+
                 val imageEarth = painterResource(R.drawable.earth)
                 Image(
                     painter = imageEarth,
@@ -269,10 +288,15 @@ private fun ShowDestinations() {
         }
         Row(
             modifier = Modifier
-                .padding(vertical = 25.dp),
+                .padding(vertical = 10.dp),
             horizontalArrangement = Arrangement.Center
         ) {
-            Column() {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    text = stringResource(R.string.image_mars),
+                    color = Color(0xFFFFFAA7)
+                )
+
                 val imageMars = painterResource(R.drawable.mars)
                 Image(
                     painter = imageMars,
@@ -284,7 +308,13 @@ private fun ShowDestinations() {
                 )
             }
 
-            Column() {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
+                Text(
+                    text = stringResource(R.string.image_jupiter),
+                    color = Color(0xFFFFFAA7)
+                )
+
                 val imageJupiter = painterResource(R.drawable.jupiter)
                 Image(
                     painter = imageJupiter,
@@ -298,10 +328,16 @@ private fun ShowDestinations() {
         }
         Row(
             modifier = Modifier
-                .padding(vertical = 25.dp),
+                .padding(vertical = 10.dp),
             horizontalArrangement = Arrangement.Center
         ) {
-            Column() {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+
+                Text(
+                    text = stringResource(R.string.image_saturn),
+                    color = Color(0xFFFFFAA7)
+                )
+
                 val imageSaturn = painterResource(R.drawable.saturn)
                 Image(
                     painter = imageSaturn,
@@ -313,7 +349,12 @@ private fun ShowDestinations() {
                 )
             }
 
-            Column() {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    text = stringResource(R.string.image_uranus),
+                    color = Color(0xFFFFFAA7)
+                )
+
                 val imageUranus = painterResource(R.drawable.uranus)
                 Image(
                     painter = imageUranus,
@@ -327,10 +368,15 @@ private fun ShowDestinations() {
         }
         Row(
             modifier = Modifier
-                .padding(vertical = 25.dp),
+                .padding(vertical = 10.dp),
             horizontalArrangement = Arrangement.Center
         ) {
-            Column() {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    text = stringResource(R.string.image_neptune),
+                    color = Color(0xFFFFFAA7)
+                )
+
                 val imageNeptune = painterResource(R.drawable.neptune)
                 Image(
                     painter = imageNeptune,
@@ -342,7 +388,12 @@ private fun ShowDestinations() {
                 )
             }
 
-            Column() {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    text = stringResource(R.string.image_pluto),
+                    color = Color(0xFFFFFAA7)
+                )
+
                 val imagePluto = painterResource(R.drawable.pluto)
                 Image(
                     painter = imagePluto,
