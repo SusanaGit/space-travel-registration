@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.susanafigueroa.spacetravelregistration.ui.theme.SpaceTravelRegistrationTheme
 
@@ -44,7 +45,7 @@ private fun SpaceTravelRegistration() {
             CenterAlignedTopAppBar(
                 title = {
                     Text(
-                        text = "Space Travel Registration",
+                        text = stringResource(R.string.space_travel_registration),
                         color = Color.LightGray
                     )
                 },
@@ -65,6 +66,8 @@ private fun SpaceTravelRegistration() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
+
+
 
             }
         }
