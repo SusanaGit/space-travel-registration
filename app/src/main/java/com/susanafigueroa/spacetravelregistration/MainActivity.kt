@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -53,8 +54,8 @@ private fun SpaceTravelRegistration() {
     var currentStep by remember { mutableStateOf(R.string.name_step1) }
 
     var nameInput by remember { mutableStateOf("") }
-    var ageInput by remember { mutableStateOf(-1) }
-    var destinationInput by remember { mutableStateOf(-1) }
+    var ageInput by remember { mutableStateOf("") }
+    var destinationInput by remember { mutableStateOf("") }
 
     Scaffold(
         topBar = {
@@ -105,6 +106,14 @@ private fun SpaceTravelRegistration() {
                                 newNameInput -> nameInput = newNameInput
                             }
                         )
+
+                        Spacer(
+                            modifier = Modifier.height(16.dp)
+                        )
+
+                        Button(onClick = { currentStep = R.string.age_step2 }) {
+                            Text (stringResource(R.string.next_button))
+                        }
                     }
 
                     R.string.age_step2 -> {
@@ -118,6 +127,21 @@ private fun SpaceTravelRegistration() {
                         Spacer(
                             modifier = Modifier.height(16.dp)
                         )
+
+                        EditValue(
+                            valueInput = ageInput,
+                            onValueChange = {
+                                    newAgeInput -> ageInput = newAgeInput
+                            }
+                        )
+
+                        Spacer(
+                            modifier = Modifier.height(16.dp)
+                        )
+
+                        Button(onClick = { currentStep = R.string.destination_step3 }) {
+                            Text (stringResource(R.string.next_button))
+                        }
 
                     }
 
@@ -133,6 +157,20 @@ private fun SpaceTravelRegistration() {
                             modifier = Modifier.height(16.dp)
                         )
 
+                        EditValue(
+                            valueInput = nameInput,
+                            onValueChange = {
+                                    newNameInput -> nameInput = newNameInput
+                            }
+                        )
+
+                        Spacer(
+                            modifier = Modifier.height(16.dp)
+                        )
+
+                        Button(onClick = { currentStep = R.string.summary_step4 }) {
+                            Text (stringResource(R.string.next_button))
+                        }
                     }
 
                     R.string.summary_step4 -> {
@@ -146,6 +184,21 @@ private fun SpaceTravelRegistration() {
                         Spacer(
                             modifier = Modifier.height(16.dp)
                         )
+
+                        EditValue(
+                            valueInput = nameInput,
+                            onValueChange = {
+                                    newNameInput -> nameInput = newNameInput
+                            }
+                        )
+
+                        Spacer(
+                            modifier = Modifier.height(16.dp)
+                        )
+
+                        Button(onClick = { currentStep = R.string.name_step1 }) {
+                            Text (stringResource(R.string.next_button))
+                        }
                     }
                 }
             }

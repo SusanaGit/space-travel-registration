@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Space Travel Registration</string>
     <string name="space_travel_registration">Space Travel Registration</string>
+    <string name="next_button">Next</string>
 
     <string name="name_step1">Name Registration</string>
     <string name="age_step2">Age Registration</string>
