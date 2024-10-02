@@ -108,7 +108,7 @@ private fun SpaceTravelRegistration() {
                         EditValue(
                             valueInput = nameInput,
                             onValueChange = {
-                                newNameInput -> nameInput = newNameInput
+                                    newNameInput -> nameInput = newNameInput
                             },
                             keyboardOptionsNumeric = false
                         )
@@ -116,16 +116,10 @@ private fun SpaceTravelRegistration() {
                         EditValue(
                             valueInput = surnameInput,
                             onValueChange = {
-                                newSurnameInput -> surnameInput = newSurnameInput
+                                    newSurnameInput -> surnameInput = newSurnameInput
                             },
                             keyboardOptionsNumeric = false
                         )
-
-                        if ( !nameInput.equals("") && !surnameInput.equals("")) {
-                            Button(onClick = { currentStep = R.string.age_step2 }) {
-                                Text (stringResource(R.string.next_button))
-                            }
-                        }
                     }
 
                     R.string.age_step2 -> {
@@ -141,15 +135,6 @@ private fun SpaceTravelRegistration() {
                             },
                             keyboardOptionsNumeric = true
                         )
-
-                        if (!ageInput.equals("")) {
-                            val age = ageInput.toIntOrNull()
-                            if (age != null && age >= 0 && age < 130) {
-                                Button(onClick = { currentStep = R.string.destination_step3 }) {
-                                    Text (stringResource(R.string.next_button))
-                                }
-                            }
-                        }
                     }
 
                     R.string.destination_step3 -> {
@@ -164,18 +149,12 @@ private fun SpaceTravelRegistration() {
 
                         ShowDestinations(
                             destinationInputName = {
-                                newDestinationInputName -> destinationInputName = newDestinationInputName
+                                    newDestinationInputName -> destinationInputName = newDestinationInputName
                             },
                             destinationInputImage = {
-                                newDestinationInputImage -> destinationInputImage = newDestinationInputImage
+                                    newDestinationInputImage -> destinationInputImage = newDestinationInputImage
                             }
                         )
-
-                        if (destinationInputName != -1) {
-                            Button(onClick = { currentStep = R.string.summary_step4 }) {
-                                Text (stringResource(R.string.next_button))
-                            }
-                        }
                     }
 
                     R.string.summary_step4 -> {
@@ -206,8 +185,92 @@ private fun SpaceTravelRegistration() {
                         }
                     }
                 }
+                val correctData = ValidateData(
+                    currentStep = currentStep,
+                    nameInput = nameInput,
+                    surnameInput = surnameInput,
+                    ageInput = ageInput,
+                    destinationInputName = destinationInputName
+                )
+
+                NextStepButton(
+                    currentStep = currentStep,
+                    nextStep = {
+                            nextStep -> currentStep = nextStep
+                    },
+                    correctData = correctData
+                )
             }
         }
+    }
+}
+
+@Composable
+private fun ValidateData(
+    currentStep: Int,
+    nameInput: String,
+    surnameInput: String,
+    ageInput: String,
+    destinationInputName: Int
+): Boolean {
+
+    var correctData: Boolean = false
+
+    when (currentStep) {
+        R.string.name_step1 -> {
+            if (!nameInput.equals("") && !surnameInput.equals("")) {
+                correctData = true
+            }
+        }
+
+        R.string.age_step2 -> {
+            if (!ageInput.equals("")) {
+                val age = ageInput.toIntOrNull()
+                if (age != null && age >= 0 && age < 130) {
+                    correctData = true
+                }
+            }
+        }
+
+        R.string.destination_step3 -> {
+            if (destinationInputName != -1) {
+                correctData = true
+            }
+        }
+    }
+    return correctData
+}
+
+@Composable
+private fun NextStepButton(
+    currentStep: Int,
+    nextStep: (Int) -> Unit,
+    correctData: Boolean
+) {
+
+    Button(
+        onClick = {
+            if (correctData) {
+                when (currentStep) {
+                    R.string.name_step1 -> {
+                        nextStep(R.string.age_step2)
+                    }
+
+                    R.string.age_step2 -> {
+                        nextStep(R.string.destination_step3)
+                    }
+
+                    R.string.destination_step3 -> {
+                        nextStep(R.string.summary_step4)
+                    }
+                }
+            }
+        },
+        enabled = correctData
+    ) {
+        Text(
+            text = stringResource(R.string.next_button)
+        )
     }
 }
 
@@ -360,7 +423,7 @@ private fun RowPlanets(
                     destinationInputName(namePlanetId1)
                     destinationInputImage(nameImagePlanetId1)
                 }
-            )
+        )
         {
             Planet(
                 namePlanetId = namePlanetId1,
