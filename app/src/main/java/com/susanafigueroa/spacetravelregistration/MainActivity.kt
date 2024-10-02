@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -214,36 +215,15 @@ private fun ShowDestinations() {
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally)
             {
-                Text(
-                    text = stringResource(R.string.image_moon),
-                    color = Color(0xFFFFFAA7)
-                )
-
-                val imageMoon = painterResource(R.drawable.moon)
-                Image(
-                    painter = imageMoon,
-                    contentDescription = stringResource(R.string.image_moon),
-                    modifier = Modifier
-                        .padding(horizontal = 40.dp)
-                        .height(50.dp)
-                        .width(50.dp)
+                Planet(
+                    namePlanetId = R.string.image_moon,
+                    nameImagePlanetId = R.drawable.moon
                 )
             }
-
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(
-                    text = stringResource(R.string.image_mercury),
-                    color = Color(0xFFFFFAA7)
-                )
-
-                val imageMercury = painterResource(R.drawable.mercury)
-                Image(
-                    painter = imageMercury,
-                    contentDescription = stringResource(R.string.image_mercury),
-                    modifier = Modifier
-                        .padding(horizontal = 40.dp)
-                        .height(50.dp)
-                        .width(50.dp)
+                Planet(
+                    namePlanetId = R.string.image_mercury,
+                    nameImagePlanetId = R.drawable.mercury
                 )
             }
         }
@@ -253,36 +233,15 @@ private fun ShowDestinations() {
             horizontalArrangement = Arrangement.Center
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(
-                    text = stringResource(R.string.image_venus),
-                    color = Color(0xFFFFFAA7)
-                )
-
-                val imageVenus = painterResource(R.drawable.venus)
-                Image(
-                    painter = imageVenus,
-                    contentDescription = stringResource(R.string.image_venus),
-                    modifier = Modifier
-                        .padding(horizontal = 40.dp)
-                        .height(50.dp)
-                        .width(50.dp)
+                Planet(
+                    namePlanetId = R.string.image_venus,
+                    nameImagePlanetId = R.drawable.venus
                 )
             }
-
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(
-                    text = stringResource(R.string.image_earth),
-                    color = Color(0xFFFFFAA7)
-                )
-
-                val imageEarth = painterResource(R.drawable.earth)
-                Image(
-                    painter = imageEarth,
-                    contentDescription = stringResource(R.string.image_earth),
-                    modifier = Modifier
-                        .padding(horizontal = 40.dp)
-                        .height(50.dp)
-                        .width(50.dp)
+                Planet(
+                    namePlanetId = R.string.image_earth,
+                    nameImagePlanetId = R.drawable.earth
                 )
             }
         }
@@ -292,37 +251,16 @@ private fun ShowDestinations() {
             horizontalArrangement = Arrangement.Center
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(
-                    text = stringResource(R.string.image_mars),
-                    color = Color(0xFFFFFAA7)
-                )
-
-                val imageMars = painterResource(R.drawable.mars)
-                Image(
-                    painter = imageMars,
-                    contentDescription = stringResource(R.string.image_mars),
-                    modifier = Modifier
-                        .padding(horizontal = 40.dp)
-                        .height(50.dp)
-                        .width(50.dp)
+                Planet(
+                    namePlanetId = R.string.image_mars,
+                    nameImagePlanetId = R.drawable.mars
                 )
             }
 
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
-                Text(
-                    text = stringResource(R.string.image_jupiter),
-                    color = Color(0xFFFFFAA7)
-                )
-
-                val imageJupiter = painterResource(R.drawable.jupiter)
-                Image(
-                    painter = imageJupiter,
-                    contentDescription = stringResource(R.string.image_jupiter),
-                    modifier = Modifier
-                        .padding(horizontal = 40.dp)
-                        .height(50.dp)
-                        .width(50.dp)
+                Planet(
+                    namePlanetId = R.string.image_jupiter,
+                    nameImagePlanetId = R.drawable.jupiter
                 )
             }
         }
@@ -332,37 +270,16 @@ private fun ShowDestinations() {
             horizontalArrangement = Arrangement.Center
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
-                Text(
-                    text = stringResource(R.string.image_saturn),
-                    color = Color(0xFFFFFAA7)
-                )
-
-                val imageSaturn = painterResource(R.drawable.saturn)
-                Image(
-                    painter = imageSaturn,
-                    contentDescription = stringResource(R.string.image_saturn),
-                    modifier = Modifier
-                        .padding(horizontal = 40.dp)
-                        .height(50.dp)
-                        .width(50.dp)
+                Planet(
+                    namePlanetId = R.string.image_saturn,
+                    nameImagePlanetId = R.drawable.saturn
                 )
             }
 
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(
-                    text = stringResource(R.string.image_uranus),
-                    color = Color(0xFFFFFAA7)
-                )
-
-                val imageUranus = painterResource(R.drawable.uranus)
-                Image(
-                    painter = imageUranus,
-                    contentDescription = stringResource(R.string.image_uranus),
-                    modifier = Modifier
-                        .padding(horizontal = 40.dp)
-                        .height(50.dp)
-                        .width(50.dp)
+                Planet(
+                    namePlanetId = R.string.image_uranus,
+                    nameImagePlanetId = R.drawable.uranus
                 )
             }
         }
@@ -372,40 +289,41 @@ private fun ShowDestinations() {
             horizontalArrangement = Arrangement.Center
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(
-                    text = stringResource(R.string.image_neptune),
-                    color = Color(0xFFFFFAA7)
-                )
-
-                val imageNeptune = painterResource(R.drawable.neptune)
-                Image(
-                    painter = imageNeptune,
-                    contentDescription = stringResource(R.string.image_neptune),
-                    modifier = Modifier
-                        .padding(horizontal = 40.dp)
-                        .height(50.dp)
-                        .width(50.dp)
+                Planet(
+                    namePlanetId = R.string.image_neptune,
+                    nameImagePlanetId = R.drawable.neptune
                 )
             }
 
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(
-                    text = stringResource(R.string.image_pluto),
-                    color = Color(0xFFFFFAA7)
-                )
-
-                val imagePluto = painterResource(R.drawable.pluto)
-                Image(
-                    painter = imagePluto,
-                    contentDescription = stringResource(R.string.image_pluto),
-                    modifier = Modifier
-                        .padding(horizontal = 40.dp)
-                        .height(50.dp)
-                        .width(50.dp)
+                Planet(
+                    namePlanetId = R.string.image_pluto,
+                    nameImagePlanetId = R.drawable.pluto
                 )
             }
         }
     }
+}
+
+@Composable
+private fun Planet(
+    namePlanetId: Int,
+    nameImagePlanetId: Int
+) {
+    Text(
+        text = stringResource(namePlanetId),
+        color = Color(0xFFFFFAA7)
+    )
+
+    val imageNeptune = nameImagePlanetId
+    Image(
+        painter = painterResource(imageNeptune),
+        contentDescription = stringResource(namePlanetId),
+        modifier = Modifier
+            .padding(horizontal = 40.dp)
+            .height(50.dp)
+            .width(50.dp)
+    )
 }
 
 @Composable
