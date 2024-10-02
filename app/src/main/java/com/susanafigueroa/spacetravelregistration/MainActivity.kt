@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -35,8 +34,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.susanafigueroa.spacetravelregistration.ui.theme.SpaceTravelRegistrationTheme
@@ -97,14 +94,8 @@ private fun SpaceTravelRegistration() {
 
                     R.string.name_step1 -> {
 
-                        Text (
-                            text = stringResource(R.string.name_text),
-                            color = Color.White,
-                            style = MaterialTheme.typography.titleLarge
-                        )
-
-                        Spacer(
-                            modifier = Modifier.height(16.dp)
+                        TextStep(
+                            textStepId = R.string.name_text
                         )
 
                         EditValue(
@@ -125,14 +116,8 @@ private fun SpaceTravelRegistration() {
 
                     R.string.age_step2 -> {
 
-                        Text (
-                            text = stringResource(R.string.age_text),
-                            color = Color.White,
-                            style = MaterialTheme.typography.titleLarge
-                        )
-
-                        Spacer(
-                            modifier = Modifier.height(16.dp)
+                        TextStep(
+                            textStepId = R.string.age_text
                         )
 
                         EditValue(
@@ -154,21 +139,11 @@ private fun SpaceTravelRegistration() {
 
                     R.string.destination_step3 -> {
 
-                        Text (
-                            text = stringResource(R.string.destination_text),
-                            color = Color.White,
-                            style = MaterialTheme.typography.titleLarge
-                        )
-
-                        Spacer(
-                            modifier = Modifier.height(16.dp)
+                        TextStep(
+                            textStepId = R.string.destination_text
                         )
 
                         ShowDestinations()
-
-                        Spacer(
-                            modifier = Modifier.height(16.dp)
-                        )
 
                         Button(onClick = { currentStep = R.string.summary_step4 }) {
                             Text (stringResource(R.string.next_button))
@@ -177,25 +152,19 @@ private fun SpaceTravelRegistration() {
 
                     R.string.summary_step4 -> {
 
-                        Text (
-                            text = stringResource(R.string.summary_space_travel),
-                            color = Color.White,
-                            style = MaterialTheme.typography.titleLarge
+                        TextStep(
+                            textStepId = R.string.summary_text
                         )
 
-                        Spacer(
-                            modifier = Modifier.height(16.dp)
-                        )
-
-                        // ShowSummary()
-
-                        Spacer(
-                            modifier = Modifier.height(16.dp)
+                        ShowSummary(
+                            nameInput,
+                            ageInput
                         )
 
                         Button(onClick = { currentStep = R.string.name_step1 }) {
                             Text (stringResource(R.string.next_button))
                         }
+
                     }
                 }
             }
@@ -204,103 +173,102 @@ private fun SpaceTravelRegistration() {
     }
 }
 
+// TEXTFIELD
+@Composable
+private fun EditValue(
+    valueInput: String,
+    onValueChange: (String) -> Unit
+){
+    TextField(
+        value = valueInput,
+        onValueChange = onValueChange
+    )
+}
+
+@Composable
+private fun TextStep(textStepId: Int) {
+    Text (
+        text = stringResource(textStepId),
+        color = Color.White,
+        style = MaterialTheme.typography.titleLarge
+    )
+
+    Spacer(
+        modifier = Modifier.height(16.dp)
+    )
+}
+
+// DESTINATIONS
 @Composable
 private fun ShowDestinations() {
     Column(
     ){
-        Row(
-            modifier = Modifier
-                .padding(vertical = 10.dp),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally)
-            {
-                Planet(
-                    namePlanetId = R.string.image_moon,
-                    nameImagePlanetId = R.drawable.moon
-                )
-            }
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Planet(
-                    namePlanetId = R.string.image_mercury,
-                    nameImagePlanetId = R.drawable.mercury
-                )
-            }
-        }
-        Row(
-            modifier = Modifier
-                .padding(vertical = 10.dp),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Planet(
-                    namePlanetId = R.string.image_venus,
-                    nameImagePlanetId = R.drawable.venus
-                )
-            }
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Planet(
-                    namePlanetId = R.string.image_earth,
-                    nameImagePlanetId = R.drawable.earth
-                )
-            }
-        }
-        Row(
-            modifier = Modifier
-                .padding(vertical = 10.dp),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Planet(
-                    namePlanetId = R.string.image_mars,
-                    nameImagePlanetId = R.drawable.mars
-                )
-            }
 
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Planet(
-                    namePlanetId = R.string.image_jupiter,
-                    nameImagePlanetId = R.drawable.jupiter
-                )
-            }
-        }
-        Row(
-            modifier = Modifier
-                .padding(vertical = 10.dp),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Planet(
-                    namePlanetId = R.string.image_saturn,
-                    nameImagePlanetId = R.drawable.saturn
-                )
-            }
+        RowPlanets(
+            namePlanetId1 = R.string.moon,
+            nameImagePlanetId1 = R.drawable.moon,
+            namePlanetId2 = R.string.mercury,
+            nameImagePlanetId2 = R.drawable.mercury
+        )
 
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Planet(
-                    namePlanetId = R.string.image_uranus,
-                    nameImagePlanetId = R.drawable.uranus
-                )
-            }
-        }
-        Row(
-            modifier = Modifier
-                .padding(vertical = 10.dp),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Planet(
-                    namePlanetId = R.string.image_neptune,
-                    nameImagePlanetId = R.drawable.neptune
-                )
-            }
+        RowPlanets(
+            namePlanetId1 = R.string.venus,
+            nameImagePlanetId1 = R.drawable.venus,
+            namePlanetId2 = R.string.earth,
+            nameImagePlanetId2 = R.drawable.earth
+        )
 
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Planet(
-                    namePlanetId = R.string.image_pluto,
-                    nameImagePlanetId = R.drawable.pluto
-                )
-            }
+        RowPlanets(
+            namePlanetId1 = R.string.mars,
+            nameImagePlanetId1 = R.drawable.mars,
+            namePlanetId2 = R.string.jupiter,
+            nameImagePlanetId2 = R.drawable.jupiter
+        )
+
+        RowPlanets(
+            namePlanetId1 = R.string.saturn,
+            nameImagePlanetId1 = R.drawable.saturn,
+            namePlanetId2 = R.string.uranus,
+            nameImagePlanetId2 = R.drawable.uranus
+        )
+
+        RowPlanets(
+            namePlanetId1 = R.string.neptune,
+            nameImagePlanetId1 = R.drawable.neptune,
+            namePlanetId2 = R.string.pluto,
+            nameImagePlanetId2 = R.drawable.pluto
+        )
+
+        Spacer(
+            modifier = Modifier.height(16.dp)
+        )
+    }
+}
+
+@Composable
+private fun RowPlanets(
+    namePlanetId1: Int,
+    nameImagePlanetId1: Int,
+    namePlanetId2: Int,
+    nameImagePlanetId2: Int
+) {
+    Row(
+        modifier = Modifier
+            .padding(vertical = 10.dp),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally)
+        {
+            Planet(
+                namePlanetId = namePlanetId1,
+                nameImagePlanetId = nameImagePlanetId1
+            )
+        }
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Planet(
+                namePlanetId = namePlanetId2,
+                nameImagePlanetId = nameImagePlanetId2
+            )
         }
     }
 }
@@ -326,17 +294,26 @@ private fun Planet(
     )
 }
 
+//SUMMARY
 @Composable
-private fun EditValue(
-    valueInput: String,
-    onValueChange: (String) -> Unit
-){
-    TextField(
-        value = valueInput,
-        onValueChange = onValueChange
+private fun ShowSummary(
+    nameInput: String,
+    ageInput: String
+) {
+
+    Text(
+        text = nameInput,
+        color = Color.White
     )
+
+    Text(
+        text = ageInput,
+        color= Color.White
+    )
+
 }
 
+// BACKGROUND
 @Composable
 private fun BackgroundImage() {
     val imageBackground = painterResource(R.drawable.galaxy_night_landscape)
