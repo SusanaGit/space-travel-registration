@@ -192,14 +192,37 @@ private fun SpaceTravelRegistration() {
                             destinationInputImage = destinationInputImage
                         )
 
-                        Button(onClick = { currentStep = R.string.name_step1 }) {
-                            Text (stringResource(R.string.next_button))
+                        Button(onClick = {
+                            currentStep = R.string.name_step1
+                            CleanData(
+                                nameInput = { nameInput = it },
+                                surnameInput = { surnameInput = it },
+                                ageInput = { ageInput = it },
+                                destinationInputName = { destinationInputName = it },
+                                destinationInputImage = { destinationInputImage = it }
+                            )
+                        }) {
+                            Text (stringResource(R.string.restart))
                         }
                     }
                 }
             }
         }
     }
+}
+
+private fun CleanData(
+    nameInput: (String) -> Unit,
+    surnameInput: (String) -> Unit,
+    ageInput: (String) -> Unit,
+    destinationInputName: (Int) -> Unit,
+    destinationInputImage: (Int) -> Unit
+) {
+    nameInput("")
+    surnameInput("")
+    ageInput("")
+    destinationInputName(-1)
+    destinationInputImage(-1)
 }
 
 @Composable

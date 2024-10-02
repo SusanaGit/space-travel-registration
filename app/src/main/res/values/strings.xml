@@ -27,5 +27,6 @@
     <string name="destination">"Destination: "</string>
     <string name="destination_image">Destination Image</string>
     <string name="destination_selected">"Destination Selected: "</string>
+    <string name="restart">"Restart"</string>
 
 </resources>
