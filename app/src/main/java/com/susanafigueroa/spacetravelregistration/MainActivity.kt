@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -37,6 +38,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -107,14 +109,16 @@ private fun SpaceTravelRegistration() {
                             valueInput = nameInput,
                             onValueChange = {
                                 newNameInput -> nameInput = newNameInput
-                            }
+                            },
+                            keyboardOptionsNumeric = false
                         )
 
                         EditValue(
                             valueInput = surnameInput,
                             onValueChange = {
                                 newSurnameInput -> surnameInput = newSurnameInput
-                            }
+                            },
+                            keyboardOptionsNumeric = false
                         )
 
                         if ( !nameInput.equals("") && !surnameInput.equals("")) {
@@ -134,7 +138,8 @@ private fun SpaceTravelRegistration() {
                             valueInput = ageInput,
                             onValueChange = {
                                     newAgeInput -> ageInput = newAgeInput
-                            }
+                            },
+                            keyboardOptionsNumeric = true
                         )
 
                         if (!ageInput.equals("")) {
@@ -200,11 +205,17 @@ private fun SpaceTravelRegistration() {
 @Composable
 private fun EditValue(
     valueInput: String,
-    onValueChange: (String) -> Unit
+    onValueChange: (String) -> Unit,
+    keyboardOptionsNumeric: Boolean
 ){
     TextField(
         value = valueInput,
-        onValueChange = onValueChange
+        onValueChange = onValueChange,
+        keyboardOptions = if (keyboardOptionsNumeric) {
+            KeyboardOptions(keyboardType = KeyboardType.Number)
+        } else {
+            KeyboardOptions.Default
+        }
     )
 
     Spacer(
