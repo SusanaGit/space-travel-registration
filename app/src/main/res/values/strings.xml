@@ -24,5 +24,10 @@
     <string name="uranus">Uranus</string>
     <string name="neptune">Neptune</string>
     <string name="pluto">Pluto</string>
+    <string name="name">Name: %1$s</string>
+    <string name="surname">Surname: %1$s</string>
+    <string name="age">Age: %1$s</string>
+    <string name="destination">"Destination: "</string>
+    <string name="destination_image">Destination Image</string>
 
 </resources>

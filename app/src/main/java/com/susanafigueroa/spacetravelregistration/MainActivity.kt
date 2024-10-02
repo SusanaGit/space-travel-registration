@@ -4,9 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -15,6 +19,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -35,8 +40,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.susanafigueroa.spacetravelregistration.ui.theme.SpaceTravelRegistrationTheme
 
 
@@ -57,10 +64,11 @@ class MainActivity : ComponentActivity() {
 private fun SpaceTravelRegistration() {
 
     var currentStep by remember { mutableStateOf(R.string.name_step1) }
-
     var nameInput by remember { mutableStateOf("") }
+    var surnameInput by remember { mutableStateOf("") }
     var ageInput by remember { mutableStateOf("") }
-    var destinationInput by remember { mutableStateOf(-1) }
+    var destinationInputName by remember { mutableStateOf(-1) }
+    var destinationInputImage by remember { mutableStateOf(-1) }
 
     Scaffold(
         topBar = {
@@ -106,8 +114,11 @@ private fun SpaceTravelRegistration() {
                             }
                         )
 
-                        Spacer(
-                            modifier = Modifier.height(16.dp)
+                        EditValue(
+                            valueInput = surnameInput,
+                            onValueChange = {
+                                newSurnameInput -> surnameInput = newSurnameInput
+                            }
                         )
 
                         Button(onClick = { currentStep = R.string.age_step2 }) {
@@ -128,10 +139,6 @@ private fun SpaceTravelRegistration() {
                             }
                         )
 
-                        Spacer(
-                            modifier = Modifier.height(16.dp)
-                        )
-
                         Button(onClick = { currentStep = R.string.destination_step3 }) {
                             Text (stringResource(R.string.next_button))
                         }
@@ -145,8 +152,11 @@ private fun SpaceTravelRegistration() {
                         )
 
                         ShowDestinations(
-                            destinationInput = {
-                                newDestinationInput -> destinationInput = newDestinationInput
+                            destinationInputName = {
+                                newDestinationInputName -> destinationInputName = newDestinationInputName
+                            },
+                            destinationInputImage = {
+                                newDestinationInputImage -> destinationInputImage = newDestinationInputImage
                             }
                         )
 
@@ -163,18 +173,18 @@ private fun SpaceTravelRegistration() {
 
                         ShowSummary(
                             nameInput = nameInput,
+                            surnameInput = surnameInput,
                             ageInput = ageInput,
-                            destinationInput = destinationInput
+                            destinationInputName = destinationInputName,
+                            destinationInputImage = destinationInputImage
                         )
 
                         Button(onClick = { currentStep = R.string.name_step1 }) {
                             Text (stringResource(R.string.next_button))
                         }
-
                     }
                 }
             }
-
         }
     }
 }
@@ -187,6 +197,10 @@ private fun EditValue(
     TextField(
         value = valueInput,
         onValueChange = onValueChange
+    )
+
+    Spacer(
+        modifier = Modifier.height(16.dp)
     )
 }
 
@@ -205,7 +219,8 @@ private fun TextStep(textStepId: Int) {
 
 @Composable
 private fun ShowDestinations(
-    destinationInput: (Int) -> Unit
+    destinationInputName: (Int) -> Unit,
+    destinationInputImage: (Int) -> Unit
 ) {
     Column(
     ){
@@ -215,7 +230,8 @@ private fun ShowDestinations(
             nameImagePlanetId1 = R.drawable.moon,
             namePlanetId2 = R.string.mercury,
             nameImagePlanetId2 = R.drawable.mercury,
-            destinationInput = destinationInput
+            destinationInputName = destinationInputName,
+            destinationInputImage = destinationInputImage
         )
 
         RowPlanets(
@@ -223,7 +239,8 @@ private fun ShowDestinations(
             nameImagePlanetId1 = R.drawable.venus,
             namePlanetId2 = R.string.earth,
             nameImagePlanetId2 = R.drawable.earth,
-            destinationInput = destinationInput
+            destinationInputName = destinationInputName,
+            destinationInputImage = destinationInputImage
         )
 
         RowPlanets(
@@ -231,7 +248,8 @@ private fun ShowDestinations(
             nameImagePlanetId1 = R.drawable.mars,
             namePlanetId2 = R.string.jupiter,
             nameImagePlanetId2 = R.drawable.jupiter,
-            destinationInput = destinationInput
+            destinationInputName = destinationInputName,
+            destinationInputImage = destinationInputImage
         )
 
         RowPlanets(
@@ -239,7 +257,8 @@ private fun ShowDestinations(
             nameImagePlanetId1 = R.drawable.saturn,
             namePlanetId2 = R.string.uranus,
             nameImagePlanetId2 = R.drawable.uranus,
-            destinationInput = destinationInput
+            destinationInputName = destinationInputName,
+            destinationInputImage = destinationInputImage
         )
 
         RowPlanets(
@@ -247,7 +266,8 @@ private fun ShowDestinations(
             nameImagePlanetId1 = R.drawable.neptune,
             namePlanetId2 = R.string.pluto,
             nameImagePlanetId2 = R.drawable.pluto,
-            destinationInput = destinationInput
+            destinationInputName = destinationInputName,
+            destinationInputImage = destinationInputImage
         )
 
         Spacer(
@@ -262,26 +282,39 @@ private fun RowPlanets(
     nameImagePlanetId1: Int,
     namePlanetId2: Int,
     nameImagePlanetId2: Int,
-    destinationInput: (Int) -> Unit
+    destinationInputName: (Int) -> Unit,
+    destinationInputImage: (Int) -> Unit
 ) {
     Row(
         modifier = Modifier
             .padding(vertical = 10.dp),
         horizontalArrangement = Arrangement.Center
     ) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally)
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .clickable {
+                    destinationInputName(namePlanetId1)
+                    destinationInputImage(nameImagePlanetId1)
+                }
+            )
         {
             Planet(
                 namePlanetId = namePlanetId1,
-                nameImagePlanetId = nameImagePlanetId1,
-                destinationInput = destinationInput
+                nameImagePlanetId = nameImagePlanetId1
             )
         }
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .clickable {
+                    destinationInputName(namePlanetId2)
+                    destinationInputImage(nameImagePlanetId2)
+                }
+        ) {
             Planet(
                 namePlanetId = namePlanetId2,
                 nameImagePlanetId = nameImagePlanetId2,
-                destinationInput = destinationInput
             )
         }
     }
@@ -291,7 +324,6 @@ private fun RowPlanets(
 private fun Planet(
     namePlanetId: Int,
     nameImagePlanetId: Int,
-    destinationInput: (Int) -> Unit
 ) {
     Text(
         text = stringResource(namePlanetId),
@@ -306,34 +338,58 @@ private fun Planet(
             .padding(horizontal = 40.dp)
             .height(50.dp)
             .width(50.dp)
-            .clickable {
-                destinationInput(nameImagePlanetId)
-            }
     )
 }
 
 @Composable
 private fun ShowSummary(
     nameInput: String,
+    surnameInput: String,
     ageInput: String,
-    destinationInput: Int
+    destinationInputImage: Int,
+    destinationInputName: Int
 ) {
-
-    Text(
-        text = nameInput,
-        color = Color.White
-    )
-
-    Text(
-        text = ageInput,
-        color= Color.White
-    )
-
-    if (destinationInput != -1) {
-        Image(
-            painter = painterResource(id = destinationInput),
-            contentDescription = "Destination Input"
+    Column(
+        modifier = Modifier
+            .padding(vertical = 40.dp)
+            .border(BorderStroke(2.dp, Color.White))
+            .padding(10.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = stringResource(R.string.name, nameInput),
+            fontSize = 20.sp,
+            color = Color.White
         )
+
+        Text(
+            text = stringResource(R.string.surname, surnameInput),
+            fontSize = 20.sp,
+            color = Color.White
+        )
+
+        Text(
+            text = stringResource(R.string.age, ageInput),
+            fontSize = 20.sp,
+            color= Color.White
+        )
+
+        if (destinationInputName != -1 && destinationInputImage != -1) {
+
+            Text (
+                text = stringResource(R.string.destination) + stringResource(destinationInputName),
+                fontSize = 20.sp,
+                color = Color.White
+            )
+
+            Image(
+                painter = painterResource(id = destinationInputImage),
+                contentDescription = stringResource(R.string.destination_image),
+                modifier = Modifier
+                    .height(100.dp)
+                    .width(100.dp)
+            )
+        }
     }
 }
 
