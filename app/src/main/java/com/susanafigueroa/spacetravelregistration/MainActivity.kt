@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -59,7 +60,7 @@ private fun SpaceTravelRegistration() {
 
     var nameInput by remember { mutableStateOf("") }
     var ageInput by remember { mutableStateOf("") }
-    var destinationInput by remember { mutableStateOf("") }
+    var destinationInput by remember { mutableStateOf(-1) }
 
     Scaffold(
         topBar = {
@@ -143,7 +144,11 @@ private fun SpaceTravelRegistration() {
                             textStepId = R.string.destination_text
                         )
 
-                        ShowDestinations()
+                        ShowDestinations(
+                            destinationInput = {
+                                newDestinationInput -> destinationInput = newDestinationInput
+                            }
+                        )
 
                         Button(onClick = { currentStep = R.string.summary_step4 }) {
                             Text (stringResource(R.string.next_button))
@@ -157,8 +162,9 @@ private fun SpaceTravelRegistration() {
                         )
 
                         ShowSummary(
-                            nameInput,
-                            ageInput
+                            nameInput = nameInput,
+                            ageInput = ageInput,
+                            destinationInput = destinationInput
                         )
 
                         Button(onClick = { currentStep = R.string.name_step1 }) {
@@ -173,7 +179,6 @@ private fun SpaceTravelRegistration() {
     }
 }
 
-// TEXTFIELD
 @Composable
 private fun EditValue(
     valueInput: String,
@@ -198,9 +203,10 @@ private fun TextStep(textStepId: Int) {
     )
 }
 
-// DESTINATIONS
 @Composable
-private fun ShowDestinations() {
+private fun ShowDestinations(
+    destinationInput: (Int) -> Unit
+) {
     Column(
     ){
 
@@ -208,35 +214,40 @@ private fun ShowDestinations() {
             namePlanetId1 = R.string.moon,
             nameImagePlanetId1 = R.drawable.moon,
             namePlanetId2 = R.string.mercury,
-            nameImagePlanetId2 = R.drawable.mercury
+            nameImagePlanetId2 = R.drawable.mercury,
+            destinationInput = destinationInput
         )
 
         RowPlanets(
             namePlanetId1 = R.string.venus,
             nameImagePlanetId1 = R.drawable.venus,
             namePlanetId2 = R.string.earth,
-            nameImagePlanetId2 = R.drawable.earth
+            nameImagePlanetId2 = R.drawable.earth,
+            destinationInput = destinationInput
         )
 
         RowPlanets(
             namePlanetId1 = R.string.mars,
             nameImagePlanetId1 = R.drawable.mars,
             namePlanetId2 = R.string.jupiter,
-            nameImagePlanetId2 = R.drawable.jupiter
+            nameImagePlanetId2 = R.drawable.jupiter,
+            destinationInput = destinationInput
         )
 
         RowPlanets(
             namePlanetId1 = R.string.saturn,
             nameImagePlanetId1 = R.drawable.saturn,
             namePlanetId2 = R.string.uranus,
-            nameImagePlanetId2 = R.drawable.uranus
+            nameImagePlanetId2 = R.drawable.uranus,
+            destinationInput = destinationInput
         )
 
         RowPlanets(
             namePlanetId1 = R.string.neptune,
             nameImagePlanetId1 = R.drawable.neptune,
             namePlanetId2 = R.string.pluto,
-            nameImagePlanetId2 = R.drawable.pluto
+            nameImagePlanetId2 = R.drawable.pluto,
+            destinationInput = destinationInput
         )
 
         Spacer(
@@ -250,7 +261,8 @@ private fun RowPlanets(
     namePlanetId1: Int,
     nameImagePlanetId1: Int,
     namePlanetId2: Int,
-    nameImagePlanetId2: Int
+    nameImagePlanetId2: Int,
+    destinationInput: (Int) -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -261,13 +273,15 @@ private fun RowPlanets(
         {
             Planet(
                 namePlanetId = namePlanetId1,
-                nameImagePlanetId = nameImagePlanetId1
+                nameImagePlanetId = nameImagePlanetId1,
+                destinationInput = destinationInput
             )
         }
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Planet(
                 namePlanetId = namePlanetId2,
-                nameImagePlanetId = nameImagePlanetId2
+                nameImagePlanetId = nameImagePlanetId2,
+                destinationInput = destinationInput
             )
         }
     }
@@ -276,29 +290,33 @@ private fun RowPlanets(
 @Composable
 private fun Planet(
     namePlanetId: Int,
-    nameImagePlanetId: Int
+    nameImagePlanetId: Int,
+    destinationInput: (Int) -> Unit
 ) {
     Text(
         text = stringResource(namePlanetId),
         color = Color(0xFFFFFAA7)
     )
 
-    val imageNeptune = nameImagePlanetId
+    val imagePlanet = nameImagePlanetId
     Image(
-        painter = painterResource(imageNeptune),
+        painter = painterResource(imagePlanet),
         contentDescription = stringResource(namePlanetId),
         modifier = Modifier
             .padding(horizontal = 40.dp)
             .height(50.dp)
             .width(50.dp)
+            .clickable {
+                destinationInput(nameImagePlanetId)
+            }
     )
 }
 
-//SUMMARY
 @Composable
 private fun ShowSummary(
     nameInput: String,
-    ageInput: String
+    ageInput: String,
+    destinationInput: Int
 ) {
 
     Text(
@@ -311,9 +329,14 @@ private fun ShowSummary(
         color= Color.White
     )
 
+    if (destinationInput != -1) {
+        Image(
+            painter = painterResource(id = destinationInput),
+            contentDescription = "Destination Input"
+        )
+    }
 }
 
-// BACKGROUND
 @Composable
 private fun BackgroundImage() {
     val imageBackground = painterResource(R.drawable.galaxy_night_landscape)
