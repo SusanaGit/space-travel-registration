@@ -6,11 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -19,7 +17,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -40,7 +37,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -151,6 +147,10 @@ private fun SpaceTravelRegistration() {
                             textStepId = R.string.destination_text
                         )
 
+                        ShowSelectedDestination(
+                            destinationInputName = destinationInputName
+                        )
+
                         ShowDestinations(
                             destinationInputName = {
                                 newDestinationInputName -> destinationInputName = newDestinationInputName
@@ -218,13 +218,34 @@ private fun TextStep(textStepId: Int) {
 }
 
 @Composable
+private fun ShowSelectedDestination(
+    destinationInputName: Int
+) {
+    if (destinationInputName != -1) {
+        Column(
+            modifier = Modifier
+                .border(BorderStroke(2.dp, Color.White))
+                .padding(10.dp),
+        ) {
+            if (destinationInputName != -1) {
+                Text(
+                    text = stringResource(R.string.destination_selected) + stringResource(destinationInputName),
+                    color = Color.White,
+                    style = MaterialTheme.typography.titleMedium,
+
+                    )
+            }
+        }
+    }
+}
+
+@Composable
 private fun ShowDestinations(
     destinationInputName: (Int) -> Unit,
     destinationInputImage: (Int) -> Unit
 ) {
     Column(
     ){
-
         RowPlanets(
             namePlanetId1 = R.string.moon,
             nameImagePlanetId1 = R.drawable.moon,

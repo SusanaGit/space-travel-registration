@@ -3,17 +3,14 @@
     <string name="space_travel_registration">Space Travel Registration</string>
     <string name="next_button">Next</string>
     <string name="image_background">image background</string>
-
     <string name="name_step1">Name Registration</string>
     <string name="age_step2">Age Registration</string>
     <string name="destination_step3">Destination Registration</string>
     <string name="summary_step4">Your Registration</string>
-
     <string name="name_text">Enter your name</string>
     <string name="age_text">Enter your age</string>
     <string name="destination_text">Select your destination</string>
     <string name="summary_text">Summary of your space travel</string>
-
     <string name="moon">Moon</string>
     <string name="mercury">Mercury</string>
     <string name="venus">Venus</string>
@@ -29,5 +26,6 @@
     <string name="age">Age: %1$s</string>
     <string name="destination">"Destination: "</string>
     <string name="destination_image">Destination Image</string>
+    <string name="destination_selected">"Destination Selected: "</string>
 
 </resources>
