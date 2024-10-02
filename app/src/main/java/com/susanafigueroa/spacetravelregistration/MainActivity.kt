@@ -117,8 +117,10 @@ private fun SpaceTravelRegistration() {
                             }
                         )
 
-                        Button(onClick = { currentStep = R.string.age_step2 }) {
-                            Text (stringResource(R.string.next_button))
+                        if ( !nameInput.equals("") && !surnameInput.equals("")) {
+                            Button(onClick = { currentStep = R.string.age_step2 }) {
+                                Text (stringResource(R.string.next_button))
+                            }
                         }
                     }
 
@@ -135,10 +137,14 @@ private fun SpaceTravelRegistration() {
                             }
                         )
 
-                        Button(onClick = { currentStep = R.string.destination_step3 }) {
-                            Text (stringResource(R.string.next_button))
+                        if (!ageInput.equals("")) {
+                            val age = ageInput.toIntOrNull()
+                            if (age != null && age >= 0 && age < 130) {
+                                Button(onClick = { currentStep = R.string.destination_step3 }) {
+                                    Text (stringResource(R.string.next_button))
+                                }
+                            }
                         }
-
                     }
 
                     R.string.destination_step3 -> {
@@ -160,8 +166,10 @@ private fun SpaceTravelRegistration() {
                             }
                         )
 
-                        Button(onClick = { currentStep = R.string.summary_step4 }) {
-                            Text (stringResource(R.string.next_button))
+                        if (destinationInputName != -1) {
+                            Button(onClick = { currentStep = R.string.summary_step4 }) {
+                                Text (stringResource(R.string.next_button))
+                            }
                         }
                     }
 
